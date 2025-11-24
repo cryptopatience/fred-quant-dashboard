@@ -1,3 +1,5 @@
+import streamlit as st
+
 # 1. 로그인 상태 확인 함수
 def check_password():
     """비밀번호 확인 및 로그인 상태 관리"""
