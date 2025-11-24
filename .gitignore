@@ -1,0 +1,38 @@
+# ============================================================
+# .gitignore - GitHub에 업로드하지 않을 파일들
+# ============================================================
+
+# Streamlit secrets (API 키 등 민감 정보)
+.streamlit/secrets.toml
+secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 임시 파일
+*.log
+*.tmp
