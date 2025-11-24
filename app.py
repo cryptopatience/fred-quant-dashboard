@@ -1,3 +1,42 @@
+# 1. 로그인 상태 확인 함수
+def check_password():
+    """비밀번호 확인 및 로그인 상태 관리"""
+    # 이미 로그인 성공한 상태라면 True 반환
+    if st.session_state.get('password_correct', False):
+        return True
+
+    # 로그인 화면 UI
+    st.title("🔒 퀀트 대시보드 로그인")
+    
+    # ID/PW 입력 폼 생성
+    with st.form("credentials"):
+        username = st.text_input("아이디 (ID)", key="username")
+        password = st.text_input("비밀번호 (Password)", type="password", key="password")
+        submit_btn = st.form_submit_button("로그인", type="primary")
+
+    # 로그인 버튼 클릭 시 로직
+    if submit_btn:
+        if username in st.secrets["passwords"] and password == st.secrets["passwords"][username]:
+            st.session_state['password_correct'] = True
+            st.rerun()  # 화면을 새로고침하여 메인 앱 로드
+        else:
+            st.error("😕 아이디 또는 비밀번호가 올바르지 않습니다.")
+            
+    return False
+
+# 2. 메인 앱 실행 로직
+if not check_password():
+    st.stop()  # 로그인이 안 되면 여기서 코드 실행을 멈춤 (아래 내용 안 보임)
+
+# ------------------------------------------------------------------
+# ▼▼▼ 여기부터 기존 대시보드 코드가 시작되면 됩니다 ▼▼▼
+# ------------------------------------------------------------------
+
+st.title("📈 퀀트 3콤보 분석 대시보드")
+st.write("로그인에 성공했습니다! 이제 데이터를 볼 수 있습니다.")
+
+
+
 # ============================================================
 # FRED API 퀀트 3콤보 분석 대시보드 (Streamlit Version)
 # Net Liquidity / Dollar Index / HY Spread vs BTC/NASDAQ/S&P500
